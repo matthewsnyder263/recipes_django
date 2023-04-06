@@ -30,7 +30,7 @@ def create_recipe(request):
     }
     return render(request, "recipes/create.html", context)
 
-def edit_recipe(request):
+def edit_recipe(request, id):
     recipe = get_object_or_404(Recipe, id=id)
     if request.method == "POST":
         form = RecipeForm(request.POST, instance=recipe)

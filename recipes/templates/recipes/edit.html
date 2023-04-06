@@ -12,6 +12,7 @@
         </nav>
     </header>
     <main>
+        <h1>Edit {{ post_object.title }}</h1>
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}

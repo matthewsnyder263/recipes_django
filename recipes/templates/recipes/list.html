@@ -1,8 +1,41 @@
-{% load static %}
+{% extends 'base.html' %}
+{% comment %} {% load static %} {% endcomment %}
+{% block title %}
+    Scrumtious Recipes
+{% endblock title %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
+{% block content %}
+    <header>
+        <nav>
+            <a href="{% url 'recipe_list' %}">Main page</a>
+            <a href="{% url 'create_recipe' %}">Create a recipe</a>
+        </nav>
+    </header>
+    <main>
+        <h1>Scrumptious Recipes</h1>
+        <h2>All the food that's fit to eat</h2>
+        <div class="recipe-grid">
+            {% for recipe in recipe_list %}
+            <div class="recipe-card">
+                <a href="{% url 'show_recipe' recipe.id %}">
+                    <h3>{{ recipe.title }}</h3>
+                    <img src="{{ recipe.picture|default:"https://placekitten.com/150/150" }}">
+                    </a>
+                    </h3>
+                    <p>{{ recipe.created_on|date:"j F Y" }}</p>
+                <div>4.3 stars</div>
+            </div>
+            {% empty %}
+            <p>There are no recipes.</p>
+            {% endfor %}
+        </div>
+    </main>
+{% endblock content %}
+
+{% comment %} {% block content %} {% endcomment %}
+{% comment %} <!DOCTYPE html>
+<html lang="en"> {% endcomment %}
+{% comment %} <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,8 +43,8 @@
         Scrumptious Recipes
     </title>
     <link rel="stylesheet" href="{% static "css/recipes.css" %}">
-</head>
-<body>
+</head> {% endcomment %}
+{% comment %} <body>
     <header>
         <nav>
             <a href="{% url 'recipe_list' %}">Main page</a>
@@ -40,5 +73,6 @@
     <footer>
         Made with love by Scrumtious Recipes
     </footer>
-</body>
-</html>
+</body> {% endcomment %}
+{% comment %} </html> {% endcomment %}
+{% comment %} {% endblock content %} {% endcomment %}
