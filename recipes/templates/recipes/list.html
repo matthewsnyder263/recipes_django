@@ -6,7 +6,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scrumptious Recipes</title>
+    <title>
+        Scrumptious Recipes
+    </title>
     <link rel="stylesheet" href="{% static "css/recipes.css" %}">
 </head>
 <body>
@@ -30,9 +32,13 @@
                     <p>{{ recipe.created_on|date:"j F Y" }}</p>
                 <div>4.3 stars</div>
             </div>
+            {% empty %}
+            <p>There are no recipes.</p>
             {% endfor %}
         </div>
-        <footer>Made with love by Scrumtious Recipes</footer>
     </main>
+    <footer>
+        Made with love by Scrumtious Recipes
+    </footer>
 </body>
 </html>
