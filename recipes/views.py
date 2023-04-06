@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from recipes.models import Recipe
+from recipes.forms import RecipeForm
 
 # Create your views here.
 def show_recipe(request, id):
@@ -15,3 +16,16 @@ def recipe_list(request):
         "recipe_list": recipes,
     }
     return render(request, "recipes/list.html", context)
+
+def create_recipe(request):
+    if request.method == "POST":
+        form = RecipeForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("recipes_list")
+    else:
+        form = RecipeForm()
+    context = {
+        "form": form,
+    }
+    return render(request, "recipes/create.html", context)
