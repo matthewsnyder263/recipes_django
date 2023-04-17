@@ -16,6 +16,7 @@
         <h2>All the food that's fit to eat</h2>
         <div class="recipe-grid">
             {% for recipe in recipe_list %}
+            <li{% cycle '' '' ' style="background-color: lightgrey;"' %}>
             <div class="recipe-card">
                 <a href="{% url 'show_recipe' recipe.id %}">
                     <h3>{{ recipe.title }}</h3>
@@ -25,6 +26,7 @@
                     <p>{{ recipe.created_on|date:"j F Y" }}</p>
                 <div>4.3 stars</div>
             </div>
+            </li>
             {% empty %}
             <p>There are no recipes.</p>
             {% endfor %}
