@@ -24,7 +24,13 @@
                 <th>Food item</th>
             </thead>
             <tbody>
+                {% for ingredient in recipe_object.ingredients.all %}
                 <tr>
+                    <td>{{ ingredient.amount }}
+                    <td>{{ ingredient.food_item }}
+                </tr>
+                {% endfor %}
+                {% comment %} <tr>
                     <td>1 cup</td>
                     <td>Green beans</td>
                 </tr>
@@ -43,20 +49,23 @@
                 <tr>
                     <td>0.5 cups</td>
                     <td>Cotija cheese</td>
-                </tr>
+                </tr> {% endcomment %}
             </tbody>
         </table>
         <div>
         <h2>Steps</h2>
             <ol>
-                <li>Blanch the green beans</li>
+                {% for step in recipe_object.steps.all %}
+                    <li>{{ step.instructions }}</li>
+                {% endfor %}
+                {% comment %} <li>Blanch the green beans</li>
                 <li>Grill the green beans and the ears of corn</li>
                 <li>Chop the green beans</li>
                 <li>Slice the corn off the cob</li>
                 <li>Grill the tortillas</li>
-                <li>Assemble the tacos with veggies, salsa, and cheese</li>
+                <li>Assemble the tacos with veggies, salsa, and cheese</li> {% endcomment %}
             </ol>
         </div>
-        <footer>Made with love by Scrumptious Recipes</footer>
+        {% comment %} <footer>Made with love by Scrumptious Recipes</footer> {% endcomment %}
     </main>
 {% endblock content %}
